@@ -1,9 +1,12 @@
 package appm.ashad.quiz.swipe;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatDrawableManager;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -22,14 +25,23 @@ public class MainActivity extends AppCompatActivity {
     private slideadapter myadapter;
     List<String> mylistofquestion=new ArrayList<>();
     List<String> mylistofanswer=new ArrayList<>();
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        fab=findViewById(R.id.floatingActionButton);
         myadapter = new slideadapter(this);
         viewPager.setAdapter(myadapter);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //share content
+            }
+        });
+
         myjsonrequest();
     }
 
@@ -85,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 }
