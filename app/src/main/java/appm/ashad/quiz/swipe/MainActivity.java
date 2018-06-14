@@ -1,5 +1,6 @@
 package appm.ashad.quiz.swipe;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +24,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private slideadapter myadapter;
-    List<String> mylistofquestion=new ArrayList<>();
+//    List<String> mylistofquestion=new ArrayList<>();
+    private ArrayList<additem>  mylistofqueestion=new ArrayList<>();
     List<String> mylistofanswer=new ArrayList<>();
     FloatingActionButton fab;
+    private slideadapter slideadapterofmine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray jsonArrayofmine=response.getJSONArray("questions");
 
 
+
+                            String jsonString = jsonArrayofmine.toString();
+
+
                             Log.i("jsonarray","is "+jsonArrayofmine);
 
 
@@ -72,11 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
                                 String question=jsonObjectinarray.getString("question");
                                 String answer=jsonObjectinarray.getString("Answer");
-                                mylistofquestion.add(i,question);
+                                mylistofqueestion.add(new additem(question, answer));
+//                                mylistofqueestion.add(i,question);
+// mExampleAdapter = new ExampleAdapter(MainActivity.this, mExampleList);
                                 mylistofanswer.add(i,answer);
 
                             }
-                            Log.i("mylistofquestion","is "+mylistofquestion);
+                            slideadapterofmine=new slideadapter(getApplicationContext(),mylistofqueestion);
+                            Log.i("mylistofquestion","is "+mylistofqueestion);
                             Log.i("mylistofanswer","is "+mylistofanswer);
 
                         } catch (JSONException e) {
