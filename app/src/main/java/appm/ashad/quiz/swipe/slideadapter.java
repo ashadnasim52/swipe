@@ -15,16 +15,9 @@ import java.util.ArrayList;
 
 public class slideadapter extends PagerAdapter{
 
-    LayoutInflater inflater;
     private Context mContext;
-
-
-   private ArrayList<additem> mExampleList;
-
-
-
-
-
+    private ArrayList<additem> mExampleList;
+    LayoutInflater inflater;
     //list of image
     int images[]={R.drawable.bulbblue,R.drawable.bulbgreen,R.drawable.circle,R.drawable.cross};
     //lisst of title
@@ -42,13 +35,12 @@ public class slideadapter extends PagerAdapter{
 
 
 
+
+
     public slideadapter(Context context, ArrayList<additem> exampleList) {
         mContext = context;
         mExampleList = exampleList;
     }
-
-
-
 
 
 
@@ -103,16 +95,19 @@ public class slideadapter extends PagerAdapter{
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        inflater=(LayoutInflater) mContext.getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
         View view =inflater.inflate(R.layout.slide,container,false);
         LinearLayout layoutslide = (LinearLayout) view.findViewById(R.id.linearlayout);
+
+        additem currentItem = mExampleList.get(position);
+
+
+        String imageUrl = currentItem.getImageUrl();
+        String creatorName = currentItem.getCreator();
         ImageView imgslide = (ImageView)  view.findViewById(R.id.imageviewofus);
         TextView txttitle= (TextView) view.findViewById(R.id.texta);
         TextView description = (TextView) view.findViewById(R.id.textb);
         layoutslide.setBackgroundColor(backgroundcolor[position]);
-        imgslide.setImageResource(images[position]);
-        txttitle.setText(titleqw[position]);
-        description.setText(descriptionqw[position]);
         container.addView(view);
         return view;
     }
