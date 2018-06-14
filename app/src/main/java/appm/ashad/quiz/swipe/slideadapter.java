@@ -11,10 +11,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class slideadapter extends PagerAdapter{
 
-    Context context;
     LayoutInflater inflater;
+    private Context mContext;
+
+
+   private ArrayList<additem> mExampleList;
+
+
+
+
+
     //list of image
     int images[]={R.drawable.bulbblue,R.drawable.bulbgreen,R.drawable.circle,R.drawable.cross};
     //lisst of title
@@ -31,9 +41,10 @@ public class slideadapter extends PagerAdapter{
     };
 
 
-    public slideadapter (Context context)
-    {
-        this.context=context;
+
+    public slideadapter(Context context, ArrayList<additem> exampleList) {
+        mContext = context;
+        mExampleList = exampleList;
     }
 
 
